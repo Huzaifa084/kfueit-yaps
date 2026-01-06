@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.kfueityaps.databinding.ActivityMainBinding
 import com.example.kfueityaps.data.SupabaseConfig
+import com.example.kfueityaps.data.prefs.TocAcceptanceStore
 import com.example.kfueityaps.ui.auth.LoginActivity
+import com.example.kfueityaps.ui.legal.TermsAndConditionsActivity
 import com.example.kfueityaps.ui.profile.ProfileActivity
 import com.example.kfueityaps.ui.post.PostsActivity
 import com.example.kfueityaps.R
@@ -20,6 +22,18 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        if (!TocAcceptanceStore.isAccepted(this)) {
+            startActivity(
+                Intent(this, TermsAndConditionsActivity::class.java)
+                    .putExtra(TermsAndConditionsActivity.EXTRA_RESUME_INTENT, intent)
+            )
+            finish()
+            @Suppress("DEPRECATION")
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+            return
+        }
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

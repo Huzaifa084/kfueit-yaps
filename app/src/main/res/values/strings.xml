@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">KFUEIT YAPS</string>
+
+    <string name="toc_title">Terms &amp; Conditions</string>
+    <string name="toc_subtitle">Please review and accept to continue into the app.</string>
+    <string name="toc_checkbox">I have read and agree to the Terms &amp; Conditions.</string>
+    <string name="toc_decline">Decline</string>
+    <string name="toc_accept">Accept &amp; Continue</string>
 </resources>

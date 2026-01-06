@@ -8,6 +8,8 @@ import io.github.jan.supabase.auth.auth
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import com.example.kfueityaps.data.SupabaseConfig
+import com.example.kfueityaps.data.prefs.TocAcceptanceStore
+import com.example.kfueityaps.ui.legal.TermsAndConditionsActivity
 import com.example.kfueityaps.ui.auth.LoginActivity
 import com.example.kfueityaps.R
 
@@ -31,6 +33,15 @@ class SplashActivity : AppCompatActivity() {
 
         lifecycleScope.launch {
             delay(2500) // Allow animation to finish + read time
+
+            if (!TocAcceptanceStore.isAccepted(this@SplashActivity)) {
+                startActivity(Intent(this@SplashActivity, TermsAndConditionsActivity::class.java))
+                finish()
+                @Suppress("DEPRECATION")
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+                return@launch
+            }
+
             val session = SupabaseConfig.client.auth.currentSessionOrNull()
             if (session != null) {
                 startActivity(Intent(this@SplashActivity, MainActivity::class.java))
@@ -39,6 +50,7 @@ class SplashActivity : AppCompatActivity() {
             }
             // Fade out transition
             finish()
+            @Suppress("DEPRECATION")
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         }
     }

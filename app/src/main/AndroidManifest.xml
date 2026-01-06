@@ -26,6 +26,10 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".ui.legal.TermsAndConditionsActivity"
+            android:exported="false" />
+
         <activity android:name=".ui.auth.LoginActivity" />
         <activity android:name=".ui.auth.SignUpActivity" />
         <activity android:name=".ui.main.MainActivity"

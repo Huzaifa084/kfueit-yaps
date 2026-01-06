@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="text_hint">#BDBDBD</color>
+
+    <!-- Night mode overrides for existing light-mode tokens -->
+    <color name="background_light">#0B0B0D</color>
+    <color name="surface_light">#141418</color>
+
+    <color name="text_primary">#F2F2F2</color>
+    <color name="text_secondary">#B6B6B6</color>
+
+    <color name="input_bg">#1D1D22</color>
+    <color name="outline_stroke">#2B2B33</color>
 </resources>

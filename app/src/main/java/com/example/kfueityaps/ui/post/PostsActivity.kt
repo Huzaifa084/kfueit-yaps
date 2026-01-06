@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.kfueityaps.BuildConfig
 import com.example.kfueityaps.databinding.ActivityPostsBinding
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.postgrest
@@ -20,6 +21,8 @@ import com.example.kfueityaps.data.model.Comment
 import com.example.kfueityaps.data.model.Profile
 import com.example.kfueityaps.ui.chat.ChatListActivity
 import com.example.kfueityaps.R
+import com.example.kfueityaps.ui.ads.AdaptiveBanner
+import com.google.android.gms.ads.AdView
 
 
 
@@ -28,11 +31,22 @@ class PostsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPostsBinding
     private var adapter: PostsAdapter? = null
     private var category: String = ""
+    private var bannerAdView: AdView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPostsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        if (BuildConfig.ADMOB_BANNER_AD_UNIT_ID.isNotBlank()) {
+            bannerAdView = AdaptiveBanner.load(
+                activity = this,
+                container = binding.adContainer,
+                adUnitId = BuildConfig.ADMOB_BANNER_AD_UNIT_ID,
+            )
+        } else {
+            binding.adContainer.visibility = View.GONE
+        }
 
         category = intent.getStringExtra("CATEGORY") ?: ""
         binding.tvCategoryTitle.text = category
@@ -72,10 +86,16 @@ class PostsActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        bannerAdView?.resume()
         // If adapter is null, fresh fetch. If not, we might want to refresh anyway but carefully?
         // Usually, onResume refresh is fine but might jump. Let's only fetch if null for now
         // or just let it replace once on resume.
         fetchPosts()
+    }
+
+    override fun onPause() {
+        bannerAdView?.pause()
+        super.onPause()
     }
 
     private fun fetchPosts() {
@@ -128,5 +148,11 @@ class PostsActivity : AppCompatActivity() {
                 println("Update Error: ${e.message}")
             }
         }
+    }
+
+    override fun onDestroy() {
+        bannerAdView?.destroy()
+        bannerAdView = null
+        super.onDestroy()
     }
 }

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- Social Brand Colors -->
+    <color name="brand_purple">#833AB4</color>
+    <color name="brand_red">#FD1D1D</color>
+    <color name="brand_orange">#FCB045</color>
+    <color name="brand_blue">#0095F6</color>
+
+    <!-- UI Core Colors -->
+    <color name="primary_dark">#121212</color>
+    <color name="background_light">#FFFFFF</color>
+    <color name="background_dark">#000000</color>
+    <color name="surface_light">#FAFAFA</color>
+    <color name="surface_dark">#121212</color>
+    
+    <!-- Text Colors -->
+    <color name="text_primary">#262626</color>
+    <color name="text_secondary">#8E8E8E</color>
+    <color name="text_primary_inverse">#FFFFFF</color>
+
+    <!-- Category Colors (Muted/Pastel for contrast) -->
+    <color name="cat_confessions">#833AB4</color>
+    <color name="cat_questions">#E1306C</color>
+    <color name="cat_advice">#FD1D1D</color>
+    <color name="cat_stories">#F56040</color>
+    <color name="cat_random">#FCB045</color>
+
+    <color name="text_hint">#000000</color>
+    <color name="input_bg">#F5F5F5</color>
+</resources>

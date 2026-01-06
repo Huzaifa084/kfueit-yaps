@@ -1,0 +1,41 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    
+    <!-- Abstract Bubble Shape 1 -->
+    <path
+        android:pathData="M30,30 Q54,10 78,30 T90,70 Q70,90 50,80 T30,30 Z"
+        android:strokeWidth="0">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:centerX="54"
+                android:centerY="54"
+                android:gradientRadius="50"
+                android:type="radial">
+                <item android:offset="0" android:color="#FF833AB4"/>
+                <item android:offset="1" android:color="#FFFD1D1D"/>
+            </gradient>
+        </aapt:attr>
+    </path>
+    
+    <!-- Abstract Shape 2 (Overlay) -->
+     <path
+        android:pathData="M78,78 Q58,98 38,78 T20,38 Q40,18 60,28 T78,78 Z"
+        android:strokeWidth="0"
+        android:fillAlpha="0.7">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:startX="20"
+                android:startY="78"
+                android:endX="78"
+                android:endY="20"
+                android:type="linear">
+                <item android:offset="0" android:color="#FFFCB045"/>
+                <item android:offset="1" android:color="#FFFFFFFF"/>
+            </gradient>
+        </aapt:attr>
+    </path>
+</vector>
